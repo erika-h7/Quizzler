@@ -17,8 +17,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
     
     // Buttons
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var choice1: UIButton!
+    @IBOutlet weak var choice2: UIButton!
+    @IBOutlet weak var choice3: UIButton!
     
     // Progress Bar
     @IBOutlet weak var progressBar: UIProgressView!
@@ -63,15 +64,22 @@ class ViewController: UIViewController {
         // Ui text(question)
         questionLabel.text = quizBrain.getQuestionText()
         
-        // Progress Bar
-        progressBar.progress = quizBrain.getProgress()
+        //Need to fetch the answers and update the button titles using the setTitle method.
+        let answerChoices = quizBrain.getAnswers()
+        choice1.setTitle(answerChoices[0], for: .normal)
+        choice2.setTitle(answerChoices[1], for: .normal)
+        choice3.setTitle(answerChoices[2], for: .normal)
         
         // Score tracker
         scoreLabel.text = "Score: \(quizBrain.getScore())"
         
+        // Progress Bar
+        progressBar.progress = quizBrain.getProgress()
+        
         // Buttons
-        trueButton.backgroundColor = UIColor.clear
-        falseButton.backgroundColor = UIColor.clear
+        choice1.backgroundColor = UIColor.clear
+        choice2.backgroundColor = UIColor.clear
+        choice3.backgroundColor = UIColor.clear
         
     }
     
